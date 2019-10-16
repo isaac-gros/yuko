@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "React Native",
-    "slug": "react-native-test",
+    "name": "Yuko",
+    "slug": "yuko",
     "privacy": "public",
     "sdkVersion": "35.0.0",
     "platforms": [
@@ -11,11 +11,11 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/piano.png",
+    "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "cover",
-      "backgroundColor": "#1552dc"
+      "backgroundColor": "#469ae9"
     },
     "updates": {
       "fallbackToCacheTimeout": 0

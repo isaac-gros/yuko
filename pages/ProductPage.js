@@ -27,7 +27,7 @@ export default class ProductsList extends React.Component {
             )
         } else {
             return (
-                <Loading></Loading>
+                <Loading message="Chargement du produit..."></Loading>
             )
         }
     }
