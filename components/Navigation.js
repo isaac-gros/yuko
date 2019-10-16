@@ -1,46 +1,21 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, TextInput, View,  } from 'react-native';
+import React from 'react';
+import { createStackNavigator } from 'react-navigation-stack';
 
-const styles = StyleSheet.create({
-    box: {
-        backgroundColor: '#EEE',
-        flexDirection: 'column',
-        padding: 20,
-        flex: 0.25,
-    },
-    title: {
-        fontSize: 24
-    },
-    content: {
-        fontSize: 16
-    },
-    input: {
-        paddingTop: 20,
-        paddingBottom: 20
-    }
-})
+/* 
+ * Routes
+ * --------
+ */
+import ProductsList from '../pages/ProductsList';
+import Scan from '../pages/Scan';
+import ProductPage from '../pages/ProductPage';
 
-class Box extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            text: ''
-        }
-    }
-
-    render() {
-        return (
-            <View style={[styles.box]}>
-                <TextInput 
-                    style={styles.input}
-                    placeholder="Votre titre sera..."
-                    onChangeText={(text) => this.setState({text})}
-                    value={this.state.text}></TextInput>
-                <Text style={styles.title}>{this.state.text}</Text>
-                <Text style={styles.content}>{this.props.content}</Text>
-            </View>
-        )
-    }
-}
-
-export default Box;
+export default createStackNavigator(
+  {
+    Produits: ProductsList,
+    Scan: Scan,
+    Produit: ProductPage,
+  },
+  {
+    initialRouteName: 'Produits',
+  }
+);

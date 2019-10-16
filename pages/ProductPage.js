@@ -36,7 +36,6 @@ export default class ProductsList extends React.Component {
         return fetch('https://world.openfoodfacts.org/api/v0/product/' + this.state.productId + '.json')
         .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
                 this.setState({
                     productDetails: responseJson.product,
                     isLoaded: true,

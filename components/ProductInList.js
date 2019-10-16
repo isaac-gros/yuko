@@ -10,7 +10,6 @@ export default class ProductInList extends React.Component {
         return (
             <View style={styles.productInList}>
                 <Image style={ styles.productImage } resizeMode="contain" source={{ uri: this.props.product_image }}></Image>
-                <Text style={ styles.productName }>{this.props.product_name}</Text>
                 <Text style={ styles.productBrand }>{this.props.product_brand}</Text>
                 <ProductInListButton 
                     product_id={this.props.product_id}
@@ -27,10 +26,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         textAlign: 'center',
         flex: 1/2,
-        height: 250,
+        height: 300,
         padding: 15,
         marginHorizontal: 5,
-        marginVertical: 15,
+        marginTop: 10,
     },
     productImage: {
         width: 'auto',
