@@ -12,6 +12,7 @@ export default class ProductsList extends React.Component {
         super(props);
         this.state = {
             isLoaded: false,
+            productsListPage: 1,
             productsList: [],
         }
     }
@@ -30,7 +31,10 @@ export default class ProductsList extends React.Component {
                         <FlatList
                             horizontal={false}
                             numColumns={2}
+                            keyExtractor={item => item.id}
                             data={this.state.productsList}
+                            onEndReachedThreshold={0.1}
+                            onEndReached={this.updatePagination}
                             renderItem={({ item }) => (
                                 <ProductInList
                                     product_id={item.id}
@@ -38,8 +42,6 @@ export default class ProductsList extends React.Component {
                                     product_brand={(item.brands !== '') ? item.brands : 'Marque inconnue'}
                                 ></ProductInList>
                             )}
-                            keyExtractor={item => item.id}
-                            //product_name + brand + id + image_front_url
                         />
                     </View>
                     <View style={styles.buttonContainer}>
@@ -49,23 +51,33 @@ export default class ProductsList extends React.Component {
             );
         } else {
             return (
-                <View style={styles.width100}>
-                    <Loading message="Chargement des produits..."></Loading>
-                </View>
+                <Loading message="Chargement des produits..."></Loading>
             )
         }
     }
 
     componentDidMount() {
-        return fetch('https://fr-en.openfoodfacts.org/category/waters.json')
+        this.updateProductList();
+    }
+
+    updateProductList = () => {
+        return fetch(`https://fr-en.openfoodfacts.org/category/waters/${this.state.productsListPage}.json`)
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({
-                    productsList: responseJson.products,
+                    productsList: [...this.state.productsList, ...responseJson.products],
                     isLoaded: true,
                 });
             }).catch((error) => {
                 console.error(error);
+        });
+    }
+
+    updatePagination = () => {
+        this.setState({
+            productsListPage: this.state.productsListPage + 1,
+        }, () => {
+            this.updateProductList();
         });
     }
 }
@@ -88,5 +100,4 @@ const styles = StyleSheet.create({
         right: 0,
         flex: 1,
     },
-
 });

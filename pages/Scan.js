@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { Camera } from 'expo-camera';
+import { View } from 'react-native';
 import * as Permissions from 'expo-permissions';
 
 import Loading from '../components/Loading';
@@ -20,11 +19,6 @@ export default class Scan extends React.Component {
     async componentDidMount() {
         const { status } = await Permissions.askAsync(Permissions.CAMERA);
         this.setState({ hasCameraPermission: status === 'granted' });
-    }
-
-    //onBarCodeScanned
-    async scanBarCode(response) {
-        alert(response);
     }
 
     //Apparence
